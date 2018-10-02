@@ -175,6 +175,26 @@ public class MainActivity extends AppCompatActivity {
                 moveToDetails();
             }
         });
+        sadnessButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Sadness sadness = new Sadness(new Date());
+                emotionsArrayList.add(sadness);
+                emotionAdapter.notifyDataSetChanged();
+                saveData();
+                moveToDetails();
+            }
+        });
+        angerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Anger anger = new Anger(new Date());
+                emotionsArrayList.add(anger);
+                emotionAdapter.notifyDataSetChanged();
+                saveData();
+                moveToDetails();
+            }
+        });
     }
 
     // Method to move to the specific view of each emotion
