@@ -155,6 +155,16 @@ public class MainActivity extends AppCompatActivity {
                 moveToDetails();
             }
         });
+        loveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Love love = new Love(new Date());
+                emotionsArrayList.add(love);
+                emotionAdapter.notifyDataSetChanged();
+                saveData();
+                moveToDetails();
+            }
+        });
     }
 
     // Method to move to the specific view of each emotion
