@@ -6,10 +6,6 @@ public class Fear extends Emotion {
 
     private String emotionName = "Fear";
 
-    Fear(){
-        super();
-    }
-
     Fear(Date date){
         super(date);
     }

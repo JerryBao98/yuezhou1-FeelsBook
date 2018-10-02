@@ -7,10 +7,6 @@ import java.util.Date;
 public class Sadness extends Emotion {
     private String emotionName = "Sadness";
 
-    Sadness(){
-        super();
-    }
-
     Sadness(Date date){ super(date); }
 
     public String getEmotionName(){

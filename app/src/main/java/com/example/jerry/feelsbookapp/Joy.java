@@ -7,10 +7,6 @@ import java.util.Date;
 public class Joy extends Emotion {
     private String emotionName = "Joy";
 
-    Joy(){
-        super();
-    }
-
     Joy(Date date){
         super(date);
     }
