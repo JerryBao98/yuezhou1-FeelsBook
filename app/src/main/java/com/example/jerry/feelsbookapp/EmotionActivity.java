@@ -23,12 +23,6 @@ public class EmotionActivity extends AppCompatActivity {
 
     int emotionId;
     String emotionName;
-    String fearName = "Fear";
-    String joyName = "Joy";
-    String loveName = "Love";
-    String surpriseName = "Surprise";
-    String angerName = "Anger";
-    String sadnessName = "Sadness";
     private Spinner emotionSpinner;
     private Date currentDate = new Date(System.currentTimeMillis());
     Button saveButton;
@@ -67,19 +61,6 @@ public class EmotionActivity extends AppCompatActivity {
             singleList.add(emotion);
             timeEditText.setText(formatDateToISO());
             editText.setText(MainActivity.emotionsArrayList.get(emotionId).getComment());
-        }
-
-        // If we are adding in a new emotion
-        // Firstly check the name of the emotion, that way we know which class to create
-        // When we find a match, we can populate the spinner as a view for the user
-        // We can also reference this object later from the spinner
-        else{
-            List<Emotion> allEmotions = populateAllEmotions();
-            for (int i = 0; i< allEmotions.size(); i ++) {
-                if (allEmotions.get(i).getEmotionName().equals(emotionName)) {
-                    singleList.add(allEmotions.get(i));
-                }
-            }
         }
 
         ArrayAdapter<Emotion> adapter = populateSpinner(singleList);
@@ -141,18 +122,6 @@ public class EmotionActivity extends AppCompatActivity {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         df.setTimeZone(tz);
         return df.format(new Date());
-    }
-
-    // Adds all possible emotions to a list
-    // returns that list as output
-    // Called only when a NEW emotion instance is added
-    private List<Emotion> populateAllEmotions(){
-        List<Emotion> emotionList = new ArrayList<>();
-        Joy joy = new Joy(currentDate);
-        Fear fear = new Fear(currentDate);
-        emotionList.add(joy);
-        emotionList.add(fear);
-        return emotionList;
     }
 
     // Populates the spinner

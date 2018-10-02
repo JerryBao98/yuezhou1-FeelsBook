@@ -1,7 +1,5 @@
 package com.example.jerry.feelsbookapp;
 
-import android.widget.Spinner;
-
 import java.util.Date;
 
 public class Sadness extends Emotion {

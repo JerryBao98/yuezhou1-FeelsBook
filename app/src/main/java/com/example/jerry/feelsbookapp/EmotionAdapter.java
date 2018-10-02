@@ -43,11 +43,11 @@ public class EmotionAdapter extends BaseAdapter {
         // Instantiate the view
         View v = View.inflate(mContext, R.layout.adapter_view_layout, null);
 
-        // Get the textview items from the layout, be sure to convert as the view is different
+        // Get the text view items from the layout, be sure to convert as the view is different
         TextView textViewName = v.findViewById(R.id.emotionTextView);
         TextView textViewdate = v.findViewById(R.id.dateTextView);
 
-        // Set the textview to the date and time of the instance of the emotion
+        // Set the text view to the date and time of the instance of the emotion
         textViewName.setText(mEmotionList.get(position).getEmotionName());
         textViewdate.setText(mEmotionList.get(position).getDate().toString());
 
