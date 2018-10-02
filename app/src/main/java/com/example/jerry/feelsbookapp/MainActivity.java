@@ -165,6 +165,16 @@ public class MainActivity extends AppCompatActivity {
                 moveToDetails();
             }
         });
+        surpriseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Surprise surprise = new Surprise(new Date());
+                emotionsArrayList.add(surprise);
+                emotionAdapter.notifyDataSetChanged();
+                saveData();
+                moveToDetails();
+            }
+        });
     }
 
     // Method to move to the specific view of each emotion
