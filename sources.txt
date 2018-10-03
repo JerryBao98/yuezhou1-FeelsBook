@@ -6,6 +6,8 @@ https://www.youtube.com/watch?v=YMJSBHAZsso&t=535s
 https://www.udemy.com/how-to-make-a-freaking-android-app/learn/v4/overview
 https://www.udemy.com/the-complete-android-oreo-developer-course/learn/v4/overview
 
+https://stackoverflow.com/questions/36727700/sort-a-list-of-objects-by-date
+
 
 
 

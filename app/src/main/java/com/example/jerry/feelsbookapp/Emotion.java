@@ -1,7 +1,10 @@
 package com.example.jerry.feelsbookapp;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public abstract class Emotion{
@@ -56,5 +59,17 @@ public abstract class Emotion{
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         df.setTimeZone(tz);
         return df.format(this.date);
+    }
+
+    // Converts the Iso back into a Date Time
+    public static Date toCalendar(String isoTime){
+        try {
+            isoTime = isoTime + "Z";
+            DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date finalResult = df1.parse(isoTime);
+            return finalResult;
+        } catch (Exception ex){
+            return new Date();
+        }
     }
 }

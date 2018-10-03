@@ -4,16 +4,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,9 +85,16 @@ public class EmotionActivity extends AppCompatActivity {
                     // DO NOT let the user change the actual emotion
                     Emotion emotion = MainActivity.emotionsArrayList.get(emotionId);
                     emotion.setComment(comment);
-                    saveData();
+                    if (checkValidDate(timeEditText.getText().toString())) {
+                        emotion.setDate(emotion.toCalendar(timeEditText.getText().toString()));
+                        displaySuccessful();
+                        saveData();
+                        openMainActivity();
+                    }
+                    else {
+                        displayFailed();
+                    }
                 }
-                openMainActivity();
             }
         });
 
@@ -108,6 +121,18 @@ public class EmotionActivity extends AppCompatActivity {
         });
     }
 
+    // If saving an emotion is successful
+    public void displaySuccessful(){
+        Toast.makeText(EmotionActivity.this, "Emotion Successfully Saved!",
+                Toast.LENGTH_LONG).show();
+    }
+
+    // If saving an emotion fails
+    public void displayFailed(){
+        Toast.makeText(EmotionActivity.this, "Emotion Failed to Save, Invalid Date",
+                Toast.LENGTH_LONG).show();
+    }
+
     // Used to open the main Activity
     public void openMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
@@ -124,9 +149,22 @@ public class EmotionActivity extends AppCompatActivity {
     }
 
     // Checks to see if the Date time is valid
-    public Boolean checkValidDate(){
+    public Boolean checkValidDate(String date) {
+        try {
+            TimeZone tz = TimeZone.getTimeZone("MST");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            df.setTimeZone(tz);
+            df.parse(date);
+            date = date + "Z";
+            Date finalResult = df.parse(date);
 
-        return true;
+            if (currentDate.after(finalResult) || currentDate.equals(finalResult)){
+                return true;
+            }
+            return false;
+        }catch (Exception ex){
+            return false;
+        }
     }
 
     // Called to save changes
