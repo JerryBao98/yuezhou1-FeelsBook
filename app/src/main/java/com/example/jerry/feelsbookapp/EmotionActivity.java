@@ -23,7 +23,7 @@ public class EmotionActivity extends AppCompatActivity {
 
     int emotionId;
     String emotionName;
-    private Spinner emotionSpinner;
+    Spinner emotionSpinner;
     private Date currentDate = new Date(System.currentTimeMillis());
     Button saveButton;
     Button cancelButton;
@@ -59,7 +59,7 @@ public class EmotionActivity extends AppCompatActivity {
         if (emotionId != -1){
             Emotion emotion = MainActivity.emotionsArrayList.get(emotionId);
             singleList.add(emotion);
-            timeEditText.setText(formatDateToISO());
+            timeEditText.setText(MainActivity.emotionsArrayList.get(emotionId).formatDateToISO());
             editText.setText(MainActivity.emotionsArrayList.get(emotionId).getComment());
         }
 
@@ -112,16 +112,6 @@ public class EmotionActivity extends AppCompatActivity {
     public void openMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    // Formats the current Date to comply with iso 8601
-    // Returns that as a string
-    public String formatDateToISO(){
-        //String tzStr = Calendar.getInstance().getTimeZone().getDisplayName();
-        TimeZone tz = TimeZone.getTimeZone("MST");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        df.setTimeZone(tz);
-        return df.format(new Date());
     }
 
     // Populates the spinner

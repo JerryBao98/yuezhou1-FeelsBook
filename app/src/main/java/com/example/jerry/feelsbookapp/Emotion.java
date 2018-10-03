@@ -1,5 +1,8 @@
 package com.example.jerry.feelsbookapp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public abstract class Emotion{
     private transient String emotionName = "Base";
@@ -45,4 +48,13 @@ public abstract class Emotion{
         return emotionName;
     }
 
+    // Formats the current Date to comply with iso 8601
+    // Returns that as a string
+    public String formatDateToISO(){
+        //String tzStr = Calendar.getInstance().getTimeZone().getDisplayName();
+        TimeZone tz = TimeZone.getTimeZone("MST");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        df.setTimeZone(tz);
+        return df.format(this.date);
+    }
 }

@@ -14,6 +14,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -74,11 +76,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // On start, load data, set the adapter to the custom emotion adapter
+    // Also be sure to sort the list by date
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
         loadData();
+        sortArrayByDate();
         emotionAdapter = new EmotionAdapter(getApplicationContext(), emotionsArrayList);
         oldEmotionsList.setAdapter(emotionAdapter);
     }
@@ -102,6 +106,18 @@ public class MainActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+
+    // Method to sort the array by date
+    private void sortArrayByDate(){
+        Collections.sort(emotionsArrayList, new Comparator<Emotion>() {
+            @Override
+            public int compare(Emotion o1, Emotion o2) {
+                // TODO Auto-generated method stub
+                return o2.getDate().compareTo(o1.getDate());
+            }
+        });
     }
 
     // Method to set the on click listeners for all emotion buttons

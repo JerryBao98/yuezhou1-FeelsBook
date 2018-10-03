@@ -49,7 +49,7 @@ public class EmotionAdapter extends BaseAdapter {
 
         // Set the text view to the date and time of the instance of the emotion
         textViewName.setText(mEmotionList.get(position).getEmotionName());
-        textViewdate.setText(mEmotionList.get(position).getDate().toString());
+        textViewdate.setText(mEmotionList.get(position).formatDateToISO());
 
         v.setTag(mEmotionList.get(position).getEmotionName());
         return v;
