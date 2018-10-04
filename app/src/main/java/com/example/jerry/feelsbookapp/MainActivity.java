@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -207,11 +208,20 @@ public class MainActivity extends AppCompatActivity {
     // use a function to reduce redundancy
     // saves the data for the new emotion, sets the comment equal to the quick comment
     // Moves to another view and displays a successful toast message
+    // If the quick comment field is not empty, then we do not need to go to another activity
     private void stepsForEmotionClicked(){
         saveData();
-        editQuickComment.getText().clear();
-        moveToDetails();
-        displaySuccessful();
+        if (editQuickComment.getText().toString().trim().length() == 0) {
+            editQuickComment.getText().clear();
+            displaySuccessful();
+            moveToDetails();
+        }
+        else {
+            sortArrayByDate();
+            emotionAdapter.notifyDataSetChanged();
+            editQuickComment.getText().clear();
+            displaySuccessful();
+        }
     }
 
     // Called to save changes
