@@ -8,26 +8,27 @@
 
         <Button
             android:id="@+id/emotionSummaryButton"
-            android:layout_width="0dp"
+            android:layout_width="335dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:text="Your Emotion Summary "
             app:layout_constraintEnd_toEndOf="@+id/fearButton"
+            app:layout_constraintHorizontal_bias="0.588"
             app:layout_constraintStart_toStartOf="@+id/angerButton"
-            app:layout_constraintTop_toBottomOf="@+id/angerButton" />
+            app:layout_constraintTop_toBottomOf="@+id/quickcommentEditText" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Feeling Nostalgic?"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Feeling Nostalgic? "
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +37,10 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Whats up?"
+            android:text="Whats up Bro?"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listView" />
@@ -47,10 +48,11 @@
         <Button
             android:id="@+id/loveButton"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
+            android:background="#FF94C2"
             android:text="Love"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -58,9 +60,10 @@
         <Button
             android:id="@+id/joyButton"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
+            android:background="#ffff8b"
             android:text="Joy"
             app:layout_constraintStart_toEndOf="@+id/loveButton"
             app:layout_constraintTop_toTopOf="@+id/loveButton" />
@@ -68,9 +71,10 @@
         <Button
             android:id="@+id/surpriseButton"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
+            android:background="#ff8a50"
             android:text="Surprise"
             app:layout_constraintStart_toEndOf="@+id/joyButton"
             app:layout_constraintTop_toTopOf="@+id/loveButton" />
@@ -78,10 +82,11 @@
         <Button
             android:id="@+id/angerButton"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
+            android:background="#ff5f52"
             android:text="Anger"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loveButton" />
@@ -89,9 +94,10 @@
         <Button
             android:id="@+id/sadnessButton"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
+            android:background="#56c8d8"
             android:text="Sadness"
             app:layout_constraintStart_toEndOf="@+id/angerButton"
             app:layout_constraintTop_toTopOf="@+id/angerButton" />
@@ -99,9 +105,10 @@
         <Button
             android:id="@+id/fearButton"
             android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
+            android:background="#60ad5e"
             android:text="Fear"
             app:layout_constraintStart_toEndOf="@+id/sadnessButton"
             app:layout_constraintTop_toTopOf="@+id/angerButton" />
@@ -109,12 +116,25 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="395dp"
-            android:layout_height="276dp"
+            android:layout_height="271dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    </android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/quickcommentEditText"
+            android:layout_width="332dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:windowSoftInputMode="adjustPan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/angerButton" />
+
+</android.support.constraint.ConstraintLayout>

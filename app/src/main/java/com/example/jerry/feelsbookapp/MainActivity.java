@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<Emotion> emotionsArrayList = new ArrayList<>();
     ListView oldEmotionsList;
     EmotionAdapter emotionAdapter;
+    EditText editQuickComment;
     Button emotionSummaryButton;
     Button loveButton;
     Button joyButton;
@@ -39,8 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Get the reference to the summary button as well as the old emotions list
+        // Create an object for the edit text
         emotionSummaryButton = findViewById(R.id.emotionSummaryButton);
         oldEmotionsList = findViewById(R.id.listView);
+        editQuickComment = findViewById(R.id.quickcommentEditText);
+
+        // Set up a hint for the quick edit comment
+        editQuickComment.setHint("Enter a Quick Comment Here!");
 
         // Get the references to the buttons in the activity
         // Set onclick Listeners for all the Buttons
@@ -129,8 +137,10 @@ public class MainActivity extends AppCompatActivity {
                 Fear fear = new Fear(new Date());
                 emotionsArrayList.add(fear);
                 emotionAdapter.notifyDataSetChanged();
+                fear.setComment(editQuickComment.getText().toString());
                 saveData();
                 moveToDetails();
+                displaySuccessful();
             }
         });
         joyButton.setOnClickListener(new View.OnClickListener() {
@@ -139,8 +149,11 @@ public class MainActivity extends AppCompatActivity {
                 Joy joy = new Joy(new Date());
                 emotionsArrayList.add(joy);
                 emotionAdapter.notifyDataSetChanged();
+                joy.setComment(editQuickComment.getText().toString());
                 saveData();
+                editQuickComment.getText().clear();
                 moveToDetails();
+                displaySuccessful();
             }
         });
         loveButton.setOnClickListener(new View.OnClickListener() {
@@ -149,8 +162,11 @@ public class MainActivity extends AppCompatActivity {
                 Love love = new Love(new Date());
                 emotionsArrayList.add(love);
                 emotionAdapter.notifyDataSetChanged();
+                love.setComment(editQuickComment.getText().toString());
                 saveData();
+                editQuickComment.getText().clear();
                 moveToDetails();
+                displaySuccessful();
             }
         });
         surpriseButton.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +175,11 @@ public class MainActivity extends AppCompatActivity {
                 Surprise surprise = new Surprise(new Date());
                 emotionsArrayList.add(surprise);
                 emotionAdapter.notifyDataSetChanged();
+                surprise.setComment(editQuickComment.getText().toString());
                 saveData();
+                editQuickComment.getText().clear();
                 moveToDetails();
+                displaySuccessful();
             }
         });
         sadnessButton.setOnClickListener(new View.OnClickListener() {
@@ -169,8 +188,11 @@ public class MainActivity extends AppCompatActivity {
                 Sadness sadness = new Sadness(new Date());
                 emotionsArrayList.add(sadness);
                 emotionAdapter.notifyDataSetChanged();
+                sadness.setComment(editQuickComment.getText().toString());
                 saveData();
+                editQuickComment.getText().clear();
                 moveToDetails();
+                displaySuccessful();
             }
         });
         angerButton.setOnClickListener(new View.OnClickListener() {
@@ -179,8 +201,11 @@ public class MainActivity extends AppCompatActivity {
                 Anger anger = new Anger(new Date());
                 emotionsArrayList.add(anger);
                 emotionAdapter.notifyDataSetChanged();
+                anger.setComment(editQuickComment.getText().toString());
                 saveData();
+                editQuickComment.getText().clear();
                 moveToDetails();
+                displaySuccessful();
             }
         });
     }
@@ -205,4 +230,11 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("task list", json);
         editor.apply();
     }
+
+    // If saving an emotion is successful
+    public void displaySuccessful(){
+        Toast.makeText(MainActivity.this, "Emotion Successfully Added!",
+                Toast.LENGTH_LONG).show();
+    }
+
 }

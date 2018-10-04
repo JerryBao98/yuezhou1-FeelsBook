@@ -64,8 +64,9 @@ public abstract class Emotion{
     // Converts the Iso back into a Date Time
     public static Date toCalendar(String isoTime){
         try {
-            isoTime = isoTime + "Z";
+            TimeZone tz = TimeZone.getTimeZone("MST");
             DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            df1.setTimeZone(tz);
             Date finalResult = df1.parse(isoTime);
             return finalResult;
         } catch (Exception ex){

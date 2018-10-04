@@ -155,7 +155,7 @@ public class EmotionActivity extends AppCompatActivity {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             df.setTimeZone(tz);
             df.parse(date);
-            date = date + "Z";
+            //date = date + "Z";
             Date finalResult = df.parse(date);
 
             if (currentDate.after(finalResult) || currentDate.equals(finalResult)){

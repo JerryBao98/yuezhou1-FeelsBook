@@ -12,17 +12,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="64dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="36dp"
         android:text="Joy"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        tools:layout_editor_absoluteY="120dp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="24dp"
         android:layout_marginTop="24dp"
         android:text="Fear"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Anger"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Love"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -50,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Surprise"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -59,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Sadness"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -91,11 +96,12 @@
 
     <TextView
         android:id="@+id/joyTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="11dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="148dp"
         android:layout_marginStart="148dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
@@ -105,6 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/joyTextView"
         app:layout_constraintTop_toBottomOf="@+id/joyTextView" />
 
@@ -114,6 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/fearTextView"
         app:layout_constraintTop_toBottomOf="@+id/fearTextView" />
 
@@ -123,6 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/angerTextView"
         app:layout_constraintTop_toBottomOf="@+id/angerTextView" />
 
@@ -132,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/loveTextView"
         app:layout_constraintTop_toBottomOf="@+id/loveTextView" />
 
@@ -141,6 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/surpriseTextView"
         app:layout_constraintTop_toBottomOf="@+id/surpriseTextView" />
 </android.support.constraint.ConstraintLayout>
