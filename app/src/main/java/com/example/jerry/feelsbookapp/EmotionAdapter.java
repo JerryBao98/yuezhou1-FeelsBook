@@ -13,6 +13,7 @@ import java.util.List;
 
 public class EmotionAdapter extends BaseAdapter {
     private List<Emotion> mEmotionList;
+    static TimeReformatter timeReformatter = new TimeReformatter();
     private Context mContext;
 
     public EmotionAdapter(Context mContext, List<Emotion> mEmotionList){
@@ -49,7 +50,7 @@ public class EmotionAdapter extends BaseAdapter {
 
         // Set the text view to the date and time of the instance of the emotion
         textViewName.setText(mEmotionList.get(position).getEmotionName());
-        textViewdate.setText(mEmotionList.get(position).formatDateToISO());
+        textViewdate.setText(timeReformatter.formatDateToISO(mEmotionList.get(position).getDate()));
 
         v.setTag(mEmotionList.get(position).getEmotionName());
         return v;

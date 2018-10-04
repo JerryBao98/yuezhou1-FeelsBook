@@ -212,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
     private void stepsForEmotionClicked(){
         saveData();
         if (editQuickComment.getText().toString().trim().length() == 0) {
-            editQuickComment.getText().clear();
             displaySuccessful();
             moveToDetails();
         }

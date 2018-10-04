@@ -28,6 +28,7 @@ import java.util.TimeZone;
 public class EmotionActivity extends AppCompatActivity {
 
     int emotionId;
+    static TimeReformatter timeReformatter = new TimeReformatter();
     String emotionName;
     Spinner emotionSpinner;
     Button saveButton;
@@ -64,7 +65,8 @@ public class EmotionActivity extends AppCompatActivity {
         if (emotionId != -1){
             Emotion emotion = MainActivity.emotionsArrayList.get(emotionId);
             singleList.add(emotion);
-            timeEditText.setText(MainActivity.emotionsArrayList.get(emotionId).formatDateToISO());
+            timeEditText.setText(timeReformatter.formatDateToISO(
+                    MainActivity.emotionsArrayList.get(emotionId).getDate()));
             editText.setText(MainActivity.emotionsArrayList.get(emotionId).getComment());
         }
 
@@ -85,7 +87,7 @@ public class EmotionActivity extends AppCompatActivity {
                     Emotion emotion = MainActivity.emotionsArrayList.get(emotionId);
                     emotion.setComment(comment);
                     if (checkValidDate(timeEditText.getText().toString())) {
-                        emotion.setDate(emotion.toCalendar(timeEditText.getText().toString()));
+                        emotion.setDate(timeReformatter.toCalendar((timeEditText.getText().toString())));
                         displaySuccessful();
                         saveData();
                         openMainActivity();

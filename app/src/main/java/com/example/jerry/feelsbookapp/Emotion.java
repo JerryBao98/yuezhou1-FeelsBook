@@ -43,29 +43,11 @@ public abstract class Emotion{
     }
 
     public String getEmotionName(){
-        return emotionName;
+        return this.emotionName;
     }
 
     @Override
     public String toString(){
-        return emotionName;
-    }
-
-    // Formats the current Date to comply with iso 8601
-    // Returns that as a string
-    public String formatDateToISO(){
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        return df.format(this.date);
-    }
-
-    // Converts the Iso back into a Date Time
-    public static Date toCalendar(String isoTime){
-        try {
-            DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date finalResult = df1.parse(isoTime);
-            return finalResult;
-        } catch (Exception ex){
-            return new Date();
-        }
+        return this.emotionName;
     }
 }
