@@ -54,19 +54,14 @@ public abstract class Emotion{
     // Formats the current Date to comply with iso 8601
     // Returns that as a string
     public String formatDateToISO(){
-        //String tzStr = Calendar.getInstance().getTimeZone().getDisplayName();
-        TimeZone tz = TimeZone.getTimeZone("MST");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        df.setTimeZone(tz);
         return df.format(this.date);
     }
 
     // Converts the Iso back into a Date Time
     public static Date toCalendar(String isoTime){
         try {
-            TimeZone tz = TimeZone.getTimeZone("MST");
             DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            df1.setTimeZone(tz);
             Date finalResult = df1.parse(isoTime);
             return finalResult;
         } catch (Exception ex){

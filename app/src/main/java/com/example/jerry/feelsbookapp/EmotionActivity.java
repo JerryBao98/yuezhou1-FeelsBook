@@ -30,7 +30,6 @@ public class EmotionActivity extends AppCompatActivity {
     int emotionId;
     String emotionName;
     Spinner emotionSpinner;
-    private Date currentDate = new Date(System.currentTimeMillis());
     Button saveButton;
     Button cancelButton;
     Button deleteButton;
@@ -151,14 +150,11 @@ public class EmotionActivity extends AppCompatActivity {
     // Checks to see if the Date time is valid
     public Boolean checkValidDate(String date) {
         try {
-            TimeZone tz = TimeZone.getTimeZone("MST");
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            df.setTimeZone(tz);
             df.parse(date);
-            //date = date + "Z";
             Date finalResult = df.parse(date);
-
-            if (currentDate.after(finalResult) || currentDate.equals(finalResult)){
+            Date currentTime = new Date();
+            if (currentTime.after(finalResult) || currentTime.equals(finalResult)){
                 return true;
             }
             return false;

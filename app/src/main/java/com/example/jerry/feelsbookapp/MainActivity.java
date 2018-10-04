@@ -138,9 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 emotionsArrayList.add(fear);
                 emotionAdapter.notifyDataSetChanged();
                 fear.setComment(editQuickComment.getText().toString());
-                saveData();
-                moveToDetails();
-                displaySuccessful();
+                stepsForEmotionClicked();
             }
         });
         joyButton.setOnClickListener(new View.OnClickListener() {
@@ -150,10 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 emotionsArrayList.add(joy);
                 emotionAdapter.notifyDataSetChanged();
                 joy.setComment(editQuickComment.getText().toString());
-                saveData();
-                editQuickComment.getText().clear();
-                moveToDetails();
-                displaySuccessful();
+                stepsForEmotionClicked();
             }
         });
         loveButton.setOnClickListener(new View.OnClickListener() {
@@ -163,10 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 emotionsArrayList.add(love);
                 emotionAdapter.notifyDataSetChanged();
                 love.setComment(editQuickComment.getText().toString());
-                saveData();
-                editQuickComment.getText().clear();
-                moveToDetails();
-                displaySuccessful();
+                stepsForEmotionClicked();
             }
         });
         surpriseButton.setOnClickListener(new View.OnClickListener() {
@@ -176,10 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 emotionsArrayList.add(surprise);
                 emotionAdapter.notifyDataSetChanged();
                 surprise.setComment(editQuickComment.getText().toString());
-                saveData();
-                editQuickComment.getText().clear();
-                moveToDetails();
-                displaySuccessful();
+                stepsForEmotionClicked();
             }
         });
         sadnessButton.setOnClickListener(new View.OnClickListener() {
@@ -189,10 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 emotionsArrayList.add(sadness);
                 emotionAdapter.notifyDataSetChanged();
                 sadness.setComment(editQuickComment.getText().toString());
-                saveData();
-                editQuickComment.getText().clear();
-                moveToDetails();
-                displaySuccessful();
+                stepsForEmotionClicked();
             }
         });
         angerButton.setOnClickListener(new View.OnClickListener() {
@@ -202,10 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 emotionsArrayList.add(anger);
                 emotionAdapter.notifyDataSetChanged();
                 anger.setComment(editQuickComment.getText().toString());
-                saveData();
-                editQuickComment.getText().clear();
-                moveToDetails();
-                displaySuccessful();
+                stepsForEmotionClicked();
             }
         });
     }
@@ -218,6 +201,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), EmotionActivity.class);
         intent.putExtra("emotionId", position);
         startActivity(intent);
+    }
+
+    // Steps taken for when any emotion button is clicked
+    // use a function to reduce redundancy
+    // saves the data for the new emotion, sets the comment equal to the quick comment
+    // Moves to another view and displays a successful toast message
+    private void stepsForEmotionClicked(){
+        saveData();
+        editQuickComment.getText().clear();
+        moveToDetails();
+        displaySuccessful();
     }
 
     // Called to save changes
