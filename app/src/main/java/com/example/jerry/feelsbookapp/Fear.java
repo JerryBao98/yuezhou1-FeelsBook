@@ -2,9 +2,9 @@ package com.example.jerry.feelsbookapp;
 
 import java.util.Date;
 
+// Fear is a different class since its used in loading the gson type
 public class Fear extends Emotion {
-
-    private String emotionName = "Fear";
+    private String emotionName = this.getClass().getSimpleName();
 
     Fear(Date date){
         super(date);

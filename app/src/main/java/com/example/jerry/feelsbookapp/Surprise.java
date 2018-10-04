@@ -3,15 +3,14 @@ package com.example.jerry.feelsbookapp;
 import java.util.Date;
 
 public class Surprise extends Emotion{
-
-    private String emotionName = "Surprise";
+    private String emotionName = this.getClass().getSimpleName();
 
     Surprise(Date date){
         super(date);
     }
 
     public String getEmotionName(){
-        return this.emotionName;
+        return this.getClass().getSimpleName();
     }
 
     @Override

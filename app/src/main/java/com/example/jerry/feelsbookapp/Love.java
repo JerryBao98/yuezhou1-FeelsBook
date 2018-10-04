@@ -3,8 +3,7 @@ package com.example.jerry.feelsbookapp;
 import java.util.Date;
 
 public class Love extends Emotion {
-
-    private String emotionName = "Love";
+    private String emotionName = this.getClass().getSimpleName();
 
     Love(Date date){
         super(date);
