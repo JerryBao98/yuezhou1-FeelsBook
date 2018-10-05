@@ -48,8 +48,6 @@ public class EmotionSummaryActivity extends AppCompatActivity {
         });
 
         // Count the total number of emotions for each type
-        //countEmotion(MainActivity.emotionsArrayList);
-
         countEmotion(MainActivity.emotionsArrayList);
         setXMLItemValues();
     }
