@@ -71,15 +71,19 @@ public class EmotionActivity extends AppCompatActivity {
                     // Simply update the time and the comment
                     // DO NOT let the user change the actual emotion
                     // Check to see that the date can actually be changed or that it's illegal
-                    emotion.setComment(comment);
-                    if (timeController.checkValidDate(timeEditText.getText().toString())) {
-                        emotion.setDate(timeController.toCalendar((timeEditText.getText().toString())));
-                        displaySuccessful();
-                        loadAndSaveController.saveData(MainActivity.emotionsArrayList);
-                        openMainActivity();
+                    if (comment.length() >= 100){
+                        displayFailedComment();
                     }
                     else {
-                        displayFailed();
+                        emotion.setComment(comment);
+                        if (timeController.checkValidDate(timeEditText.getText().toString())) {
+                            emotion.setDate(timeController.toCalendar((timeEditText.getText().toString())));
+                            displaySuccessful();
+                            loadAndSaveController.saveData(MainActivity.emotionsArrayList);
+                            openMainActivity();
+                        } else {
+                            displayFailedDate();
+                        }
                     }
                 }
             }
@@ -126,8 +130,14 @@ public class EmotionActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
     }
 
-    // If saving an emotion fails
-    private void displayFailed(){
+    // If an emotions comment is too long
+    private void displayFailedComment(){
+        Toast.makeText(EmotionActivity.this, "Emotion Failed to Save, Invalid Date",
+                Toast.LENGTH_LONG).show();
+    }
+
+    // If an emotions date is incorrect
+    private void displayFailedDate(){
         Toast.makeText(EmotionActivity.this, "Emotion Failed to Save, Invalid Date",
                 Toast.LENGTH_LONG).show();
     }

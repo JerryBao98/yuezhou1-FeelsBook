@@ -20,8 +20,6 @@ public abstract class Emotion{
         if (comment.length() <= 100){
             this.comment = comment;
         }
-        else{
-        }
     }
 
     public void setDate(Date date){
