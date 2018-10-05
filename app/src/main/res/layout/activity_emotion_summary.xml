@@ -76,7 +76,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="144dp"
         android:text="Back To Main menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -155,4 +155,13 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/surpriseTextView"
         app:layout_constraintTop_toBottomOf="@+id/surpriseTextView" />
+
+    <TextView
+        android:id="@+id/summaryTextView"
+        android:layout_width="174dp"
+        android:layout_height="124dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="393dp" />
 </android.support.constraint.ConstraintLayout>

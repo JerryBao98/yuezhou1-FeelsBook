@@ -1,40 +1,27 @@
 package com.example.jerry.feelsbookapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class EmotionActivity extends AppCompatActivity {
 
     int emotionId;
-    static TimeReformatter timeReformatter = new TimeReformatter();
-    String emotionName;
+    static TimeController timeController = new TimeController();
+    private LoadAndSaveController loadAndSaveController = new LoadAndSaveController(this);
     Spinner emotionSpinner;
     Button saveButton;
     Button cancelButton;
     Button deleteButton;
     EditText timeEditText;
+    Emotion emotion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +36,24 @@ public class EmotionActivity extends AppCompatActivity {
         // Get a reference to the spinner
         // Get the save, delete and cancel buttons
         emotionId = intent.getIntExtra("emotionId", -1);
-        emotionName = intent.getStringExtra("emotionName");
-        emotionSpinner = findViewById(R.id.emotionSpinner);
-        saveButton = findViewById(R.id.saveButton);
-        cancelButton = findViewById(R.id.cancelButton);
-        deleteButton = findViewById(R.id.deleteButton);
-
-        // Get the edit text input box
-        timeEditText = findViewById(R.id.timeEditText);
+        findAllXMLItems();
 
         // Populate the spinner, the comment section. and the date
-        // This will vary based on whether the user clicked on an existing
-        // emotion or decided to add in a new one
-        List<Emotion> singleList = new ArrayList<>();
+        // This will MAKE SURE the user clicked on an existing emotion
+        // Just extra error-checking
+        // Single list is used only for populating the spinner
+        // If we decide to change the feature so that user's can change their emotions,
+        // then singleList will now have more options for emotions
+        EmotionsList<Emotion> singleList = new EmotionsList<>();
         if (emotionId != -1){
-            Emotion emotion = MainActivity.emotionsArrayList.get(emotionId);
-            singleList.add(emotion);
-            timeEditText.setText(timeReformatter.formatDateToISO(
-                    MainActivity.emotionsArrayList.get(emotionId).getDate()));
-            editText.setText(MainActivity.emotionsArrayList.get(emotionId).getComment());
+            emotion = MainActivity.emotionsArrayList.getEmotion(emotionId);
+            singleList.addEmotion(emotion);
+            timeEditText.setText(timeController.formatDateToISO(
+                    MainActivity.emotionsArrayList.getEmotion(emotionId).getDate()));
+            editText.setText(MainActivity.emotionsArrayList.getEmotion(emotionId).getComment());
         }
 
+        // Initialize the spinner object
         ArrayAdapter<Emotion> adapter = populateSpinner(singleList);
         emotionSpinner.setAdapter(adapter);
 
@@ -80,16 +64,18 @@ public class EmotionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String comment = editText.getText().toString();
 
+                // If statement is unnecessary, but if the code undergoes more changes
+                // sanity checking is always a good thing
                 if (emotionId != -1){
                     // If the object is an existing one
                     // Simply update the time and the comment
                     // DO NOT let the user change the actual emotion
-                    Emotion emotion = MainActivity.emotionsArrayList.get(emotionId);
+                    // Check to see that the date can actually be changed or that it's illegal
                     emotion.setComment(comment);
-                    if (checkValidDate(timeEditText.getText().toString())) {
-                        emotion.setDate(timeReformatter.toCalendar((timeEditText.getText().toString())));
+                    if (timeController.checkValidDate(timeEditText.getText().toString())) {
+                        emotion.setDate(timeController.toCalendar((timeEditText.getText().toString())));
                         displaySuccessful();
-                        saveData();
+                        loadAndSaveController.saveData(MainActivity.emotionsArrayList);
                         openMainActivity();
                     }
                     else {
@@ -114,28 +100,40 @@ public class EmotionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (emotionId != -1){
-                    MainActivity.emotionsArrayList.remove(MainActivity.emotionsArrayList.get(emotionId));
-                    saveData();
+                    MainActivity.emotionsArrayList.removeEmotion(MainActivity.emotionsArrayList.getEmotion(emotionId));
+                    loadAndSaveController.saveData(MainActivity.emotionsArrayList);
                 }
                 openMainActivity();
             }
         });
     }
 
+
+    // References all the xml fields you need to edit
+    private void findAllXMLItems(){
+        emotionSpinner = findViewById(R.id.emotionSpinner);
+        saveButton = findViewById(R.id.saveButton);
+        cancelButton = findViewById(R.id.cancelButton);
+        deleteButton = findViewById(R.id.deleteButton);
+
+        // Get the edit text input box
+        timeEditText = findViewById(R.id.timeEditText);
+    }
+
     // If saving an emotion is successful
-    public void displaySuccessful(){
+    private void displaySuccessful(){
         Toast.makeText(EmotionActivity.this, "Emotion Successfully Saved!",
                 Toast.LENGTH_LONG).show();
     }
 
     // If saving an emotion fails
-    public void displayFailed(){
+    private void displayFailed(){
         Toast.makeText(EmotionActivity.this, "Emotion Failed to Save, Invalid Date",
                 Toast.LENGTH_LONG).show();
     }
 
     // Used to open the main Activity
-    public void openMainActivity(){
+    private void openMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -147,32 +145,5 @@ public class EmotionActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, emotionList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
-    }
-
-    // Checks to see if the Date time is valid
-    public Boolean checkValidDate(String date) {
-        try {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            df.parse(date);
-            Date finalResult = df.parse(date);
-            Date currentTime = new Date();
-            if (currentTime.after(finalResult) || currentTime.equals(finalResult)){
-                return true;
-            }
-            return false;
-        }catch (Exception ex){
-            return false;
-        }
-    }
-
-    // Called to save changes
-    // Code source listed in readme
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(MainActivity.emotionsArrayList);
-        editor.putString("task list", json);
-        editor.apply();
     }
 }

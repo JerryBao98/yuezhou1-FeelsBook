@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import static java.lang.System.getProperty;
 
 public class EmotionSummaryActivity extends AppCompatActivity {
 
@@ -41,27 +48,10 @@ public class EmotionSummaryActivity extends AppCompatActivity {
         });
 
         // Count the total number of emotions for each type
+        //countEmotion(MainActivity.emotionsArrayList);
+
         countEmotion(MainActivity.emotionsArrayList);
-
-        // Reference the text views and
-        // Display the values
-        sadnessTextView = findViewById(R.id.sadnessTextView);
-        sadnessTextView.setText(String.valueOf(numSad));
-
-        angerTextView = findViewById(R.id.angerTextView);
-        angerTextView.setText(String.valueOf(numAnger));
-
-        fearTextView = findViewById(R.id.fearTextView);
-        fearTextView.setText(String.valueOf(numFear));
-
-        surpriseTextView = findViewById(R.id.surpriseTextView);
-        surpriseTextView.setText(String.valueOf(numSurprise));
-
-        loveTextView = findViewById(R.id.loveTextView);
-        loveTextView.setText(String.valueOf(numLove));
-
-        joyTextView = findViewById(R.id.joyTextView);
-        joyTextView.setText(String.valueOf(numJoy));
+        setXMLItemValues();
     }
 
     // Provides a count of all the emotions
@@ -88,4 +78,24 @@ public class EmotionSummaryActivity extends AppCompatActivity {
         }
     }
 
+    // Set the correct values to the view
+    private void setXMLItemValues(){
+        sadnessTextView = findViewById(R.id.sadnessTextView);
+        sadnessTextView.setText(String.valueOf(numSad));
+
+        angerTextView = findViewById(R.id.angerTextView);
+        angerTextView.setText(String.valueOf(numAnger));
+
+        fearTextView = findViewById(R.id.fearTextView);
+        fearTextView.setText(String.valueOf(numFear));
+
+        surpriseTextView = findViewById(R.id.surpriseTextView);
+        surpriseTextView.setText(String.valueOf(numSurprise));
+
+        loveTextView = findViewById(R.id.loveTextView);
+        loveTextView.setText(String.valueOf(numLove));
+
+        joyTextView = findViewById(R.id.joyTextView);
+        joyTextView.setText(String.valueOf(numJoy));
+    }
 }

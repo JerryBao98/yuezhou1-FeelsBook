@@ -10,34 +10,39 @@ import android.widget.TextView;
 import java.util.List;
 
 // Custom Adapter class for the Emotion Object
-
+// Inherits the BaseAdapter class
 public class EmotionAdapter extends BaseAdapter {
     private List<Emotion> mEmotionList;
-    static TimeReformatter timeReformatter = new TimeReformatter();
+    private static TimeController timeController = new TimeController();
     private Context mContext;
 
-    public EmotionAdapter(Context mContext, List<Emotion> mEmotionList){
+    // Constructor
+    // We need to have the context and emotion list specified
+    EmotionAdapter(Context mContext, List<Emotion> mEmotionList){
         this.mContext = mContext;
         this.mEmotionList = mEmotionList;
     }
 
+    // Will return a count of the emotions list
     @Override
     public int getCount(){
         return this.mEmotionList.size();
     }
 
+    // Will return an item from the emotion list based on its position
     @Override
     public Object getItem(int position) {
         return mEmotionList.get(position);
     }
 
+    // Will return an item's index
     @Override
     public long getItemId(int position) {
         return position;
     }
 
     // Gets the view and attaches it to the list
-    // Modifies the textviews of the list item to match adapter_view_layout.xml
+    // Modifies the text views of the list item to match adapter_view_layout.xml
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
@@ -50,8 +55,9 @@ public class EmotionAdapter extends BaseAdapter {
 
         // Set the text view to the date and time of the instance of the emotion
         textViewName.setText(mEmotionList.get(position).getEmotionName());
-        textViewdate.setText(timeReformatter.formatDateToISO(mEmotionList.get(position).getDate()));
+        textViewdate.setText(timeController.formatDateToISO(mEmotionList.get(position).getDate()));
 
+        // Set the tag of the view object to the name of the emotion
         v.setTag(mEmotionList.get(position).getEmotionName());
         return v;
     }
