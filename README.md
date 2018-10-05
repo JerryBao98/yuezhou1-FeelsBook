@@ -10,7 +10,7 @@ Created by Rob Percival, Nick Walter, Codestars by Rob Percival, The Complete An
 All Youtube Videos:
 Coding in Flow, How to Save an ArrayList of Custom Objects to SharedPreferences with Gson - Android Studio Tutorial, https://www.youtube.com/watch?v=jcliHGR3CHo, 2017-Nov-6, retrieved 2018-9-25
 CodingWithMitch, Android Beginner Tutorial #8 - Custom ListView Adapter For Displaying Multiple Columns, https://www.youtube.com/watch?v=E6vE8fqQPTE&t=542s, 2017 Mar 14, retrieved 2018-9-27
-tori san, Android studio: Create custom adapter for listview very easy, 2015 Nov 15, retrieved 2018-9-27
+tori san, Android studio: Create custom adapter for listview very easy, https://www.youtube.com/watch?v=YMJSBHAZsso&t=535s, 2015 Nov 15, retrieved 2018-9-27
 
 
 All Stack Overflow Questions:
