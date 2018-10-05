@@ -11,6 +11,8 @@ import java.util.List;
 
 // Custom Adapter class for the Emotion Object
 // Inherits the BaseAdapter class
+// Displays the Emotion name as well as its date
+
 public class EmotionAdapter extends BaseAdapter {
     private List<Emotion> mEmotionList;
     private static TimeController timeController = new TimeController();

@@ -2,7 +2,8 @@ package com.example.jerry.feelsbookapp;
 
 import java.util.Date;
 
-// Fear is a different class since its used in loading the gson type
+// Class of Fear inherits Emotion
+// Has its own emotion name and and Override to toString()
 public class Fear extends Emotion {
     private String emotionName = this.getClass().getSimpleName();
 

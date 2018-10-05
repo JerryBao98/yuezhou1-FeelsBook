@@ -11,6 +11,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.List;
 
+// Activity used for when a specific emotion is clicked on in MainActivity's list view
+// Will allow for the user to view the Type, Comment, and Date of the specific emotion
+// Allows user to edit Comment and Date
+// Also allows for the user to save or discard changes
+
+// While editing the emotion is not allowed, since it is populated via a spinner object,
+// If we decide for the user to edit emotions, they can simply select a new emotion from the
+// drop down, making the code much more friendly to future patches or changes
+
+// Is able to redirect the User to the MainActivity
+
 public class EmotionActivity extends AppCompatActivity {
 
     int emotionId;
@@ -67,11 +78,11 @@ public class EmotionActivity extends AppCompatActivity {
                 // If statement is unnecessary, but if the code undergoes more changes
                 // sanity checking is always a good thing
                 if (emotionId != -1){
+
                     // If the object is an existing one
                     // Simply update the time and the comment
                     // DO NOT let the user change the actual emotion
                     // Check to see that the date can actually be changed or that it's illegal
-
                     emotion.setComment(comment);
                     if (timeController.checkValidDate(timeEditText.getText().toString())) {
                         emotion.setDate(timeController.toCalendar((timeEditText.getText().toString())));

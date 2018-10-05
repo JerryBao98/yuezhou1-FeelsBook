@@ -10,6 +10,9 @@ import java.util.Date;
 // Simple class used for time-related tasks
 // Such as changing ISO from to Date and vice versa
 // Also validates input time, to see that the dates are correct
+// Has a feature to sort an array my date, in descending order,
+// that way the emotion entries are easier to be accessed at the top of the project
+
 public class TimeController {
 
     // Formats the current Date to comply with iso 8601

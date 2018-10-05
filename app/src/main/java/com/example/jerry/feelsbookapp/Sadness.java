@@ -2,6 +2,8 @@ package com.example.jerry.feelsbookapp;
 
 import java.util.Date;
 
+// Class of Sadness inherits Emotion
+// Has its own emotion name and and Override to toString()
 public class Sadness extends Emotion {
     private String emotionName = this.getClass().getSimpleName();
 

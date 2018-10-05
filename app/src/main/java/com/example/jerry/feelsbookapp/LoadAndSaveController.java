@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.jerry.feelsbookapp.MainActivity.emotionsArrayList;
 
+// Simple class used to save and load using Gson and Shared Preferences,
+// Called in both the EmotionsActivity and MainActivity
+// Requires a context to be instantiated
+
 public class LoadAndSaveController {
 
     private Context context;

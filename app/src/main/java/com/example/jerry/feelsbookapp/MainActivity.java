@@ -21,6 +21,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
+// The homepage of the application
+// Has the 6 emotion buttons that allow for emotions to be added
+// Has a list view inorder to show old emotions.
+// Has a quick comment field, allows a user to quickly pass in a comment for an emotion instance
+// Has a summary button, when clicked, the user will be sent to the EmotionSummaryActivity page
+
+// When an emotion button is clicked, the list will be updated, and the new emotion will be at the top
+// If an emotion in the list view is clicked, the user will be sent to the EmotionActivity,
+// where they may edit the detail of the emotion they clicked on
+
+
 public class MainActivity extends AppCompatActivity {
 
     static EmotionsList<Emotion> emotionsArrayList = new EmotionsList<>();
@@ -44,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Set content view, load old data
         setContentView(R.layout.activity_main);
 
+        // Find all proper XML paths
         findAllEditTexts();
         findAllButtons();
 
@@ -70,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         // Call the method to set an onclick listener for all buttons
         setAllEmotionOnClick();
     }
+
+
 
     // On start, load data, set the adapter to the custom emotion adapter
     // Also be sure to sort the list by date
@@ -176,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
     // Steps taken for when any emotion button is clicked
     // use a function to reduce redundancy
     // saves the data for the new emotion, sets the comment equal to the quick comment
+    // display a success message
     private void stepsForEmotionClicked(){
         loadAndSaveController.saveData(emotionsArrayList);
         timeController.sortArrayByDate(emotionsArrayList);
